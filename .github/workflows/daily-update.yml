@@ -1,0 +1,36 @@
+name: Daily Crypto Data Update
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # run daily at 8:00 AM
+  workflow_dispatch: 
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas plotly scikit-learn requests
+
+      - name: Fetch data and generate charts
+        run: |
+          python model.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Update charts with new data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
