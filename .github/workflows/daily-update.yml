@@ -2,8 +2,8 @@ name: Daily Crypto Data Update
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # run daily at 8:00 AM
-  workflow_dispatch: 
+    - cron: '45 17 * * *'  # runs daily at 12:45 PM 
+  workflow_dispatch:  
 
 jobs:
   update:
