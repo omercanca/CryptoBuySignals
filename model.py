@@ -62,7 +62,7 @@ def fetch_and_generate_charts():
 
         # Update layout
         fig.update_layout(
-            title=f'{coin_name} Price Chart with Model-Based Buy Signals',
+            title=f'{coin_name} Price Chart with 4-Day Model-Based Buy Signals',
             xaxis_title='Date',
             yaxis_title='Price (USD)',
             hovermode='x unified'
